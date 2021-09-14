@@ -1,3 +1,9 @@
+today = datetime.datetime.now()
+
+print(today)
+print(today.strftime("%A, %B %dth %Y"))
+
+
 %a	요일 (짧은 버전)	Mon
 %A	요일 (풀 버전)	Monday
 %w	요일 (숫자 버전, 0~6, 0이 일요일)	5
