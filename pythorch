@@ -1,0 +1,271 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled6.ipynb",
+      "provenance": [],
+      "mount_file_id": "1rjU5c8VBCkOJe4Up6D93JFeyT2ME3avL",
+      "authorship_tag": "ABX9TyPT3ShMEiPMwJ6PYBoMWLIg",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    },
+    "accelerator": "GPU"
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Piat0046/PractiseProject/blob/master/pythorch\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!git clone https://github.com/rosinality/stylegan2-pytorch.git # stylegan2-pytorch github\n",
+        "!pip install ninja \n",
+        "%cd stylegan2-pytorch/"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "L-lZix3qjpMK",
+        "outputId": "c91e6745-346d-4c1c-e59a-289a0ec053d3"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Cloning into 'stylegan2-pytorch'...\n",
+            "remote: Enumerating objects: 395, done.\u001b[K\n",
+            "remote: Counting objects: 100% (3/3), done.\u001b[K\n",
+            "remote: Compressing objects: 100% (3/3), done.\u001b[K\n",
+            "remote: Total 395 (delta 0), reused 1 (delta 0), pack-reused 392\u001b[K\n",
+            "Receiving objects: 100% (395/395), 122.52 MiB | 13.92 MiB/s, done.\n",
+            "Resolving deltas: 100% (200/200), done.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python /content/stylegan2-pytorch/convert_weight.py --repo ./stylegan2 $pkl_file"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "dAyuwQrCjrUX",
+        "outputId": "f85999e4-a002-4db0-dd2e-bba96102c723"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Traceback (most recent call last):\n",
+            "  File \"/content/stylegan2-pytorch/convert_weight.py\", line 236, in <module>\n",
+            "    generator, discriminator, g_ema = pickle.load(f)\n",
+            "ModuleNotFoundError: No module named 'torch_utils.persistence'\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "%cd stylegan2-pytorch/\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "8W8LqcUjkwdy",
+        "outputId": "949cc704-a5b5-4db8-8fc5-a0baae8d095a"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "/content/stylegan2-pytorch\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python prepare_data.py --out '/content/drive/MyDrive/Colab Notebooks/results/pytorch' --size 256 '/content/drive/MyDrive/Colab Notebooks/project4/aligned/512'"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "t6sbRxpN75P7",
+        "outputId": "1748a07a-a7f6-43f6-e868-b0f67db2717f"
+      },
+      "execution_count": 14,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Make dataset of image sizes: 256\n",
+            "0it [00:00, ?it/s]/usr/local/lib/python3.7/dist-packages/torchvision/transforms/functional.py:405: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.\n",
+            "  \"Argument interpolation should be of type InterpolationMode instead of int. \"\n",
+            "/usr/local/lib/python3.7/dist-packages/torchvision/transforms/functional.py:405: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.\n",
+            "  \"Argument interpolation should be of type InterpolationMode instead of int. \"\n",
+            "/usr/local/lib/python3.7/dist-packages/torchvision/transforms/functional.py:405: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.\n",
+            "  \"Argument interpolation should be of type InterpolationMode instead of int. \"\n",
+            "/usr/local/lib/python3.7/dist-packages/torchvision/transforms/functional.py:405: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.\n",
+            "  \"Argument interpolation should be of type InterpolationMode instead of int. \"\n",
+            "/usr/local/lib/python3.7/dist-packages/torchvision/transforms/functional.py:405: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.\n",
+            "  \"Argument interpolation should be of type InterpolationMode instead of int. \"\n",
+            "/usr/local/lib/python3.7/dist-packages/torchvision/transforms/functional.py:405: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.\n",
+            "  \"Argument interpolation should be of type InterpolationMode instead of int. \"\n",
+            "/usr/local/lib/python3.7/dist-packages/torchvision/transforms/functional.py:405: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.\n",
+            "  \"Argument interpolation should be of type InterpolationMode instead of int. \"\n",
+            "1it [00:00,  1.81it/s]/usr/local/lib/python3.7/dist-packages/torchvision/transforms/functional.py:405: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.\n",
+            "  \"Argument interpolation should be of type InterpolationMode instead of int. \"\n",
+            "108it [00:07, 14.41it/s]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python -m torch.distributed.launch --nproc_per_node=1 train.py --batch 8 /content/drive/MyDrive/Colab\\ Notebooks/results/pytorch"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "OMG0MlN28Dke",
+        "outputId": "ffbe3455-42ce-4983-90fc-22fc6299f29e"
+      },
+      "execution_count": 16,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "/usr/local/lib/python3.7/dist-packages/torch/distributed/launch.py:186: FutureWarning: The module torch.distributed.launch is deprecated\n",
+            "and will be removed in future. Use torchrun.\n",
+            "Note that --use_env is set by default in torchrun.\n",
+            "If your script expects `--local_rank` argument to be set, please\n",
+            "change it to read from `os.environ['LOCAL_RANK']` instead. See \n",
+            "https://pytorch.org/docs/stable/distributed.html#launch-utility for \n",
+            "further instructions\n",
+            "\n",
+            "  FutureWarning,\n",
+            "  0% 0/800000 [00:00<?, ?it/s]/content/stylegan2-pytorch/op/conv2d_gradfix.py:89: UserWarning: conv2d_gradfix not supported on PyTorch 1.10.0+cu111. Falling back to torch.nn.functional.conv2d().\n",
+            "  f\"conv2d_gradfix not supported on PyTorch {torch.__version__}. Falling back to torch.nn.functional.conv2d().\"\n",
+            "d: 0.8830; g: 12.0284; r1: 0.0003; path: 3.1902; mean path: 0.0172; augment: 0.0000:   0% 0/800000 [00:03<?, ?it/s]/usr/local/lib/python3.7/dist-packages/torchvision/utils.py:50: UserWarning: range will be deprecated, please use value_range instead.\n",
+            "  warnings.warn(warning)\n",
+            "d: 0.7110; g: 5.3233; r1: 0.0367; path: 0.0094; mean path: 0.1400; augment: 0.0000:   0% 199/800000 [04:55<325:02:39,  1.46s/it]WARNING:torch.distributed.elastic.agent.server.api:Received 2 death signal, shutting down workers\n",
+            "--- Logging error ---\n",
+            "d: 0.7110; g: 5.3233; r1: 0.0367; path: 0.0094; mean path: 0.1400; augment: 0.0000:   0% 199/800000 [04:56<330:52:38,  1.49s/it]\n",
+            "Traceback (most recent call last):\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/elastic/agent/server/api.py\", line 709, in run\n",
+            "    result = self._invoke_run(role)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/elastic/agent/server/api.py\", line 843, in _invoke_run\n",
+            "    time.sleep(monitor_interval)\n",
+            "Traceback (most recent call last):\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/elastic/multiprocessing/api.py\", line 60, in _terminate_process_handler\n",
+            "    raise SignalException(f\"Process {os.getpid()} got signal: {sigval}\", sigval=sigval)\n",
+            "  File \"train.py\", line 531, in <module>\n",
+            "torch.distributed.elastic.multiprocessing.api.SignalException: Process 780 got signal: 2\n",
+            "\n",
+            "During handling of the above exception, another exception occurred:\n",
+            "\n",
+            "Traceback (most recent call last):\n",
+            "  File \"/usr/lib/python3.7/logging/__init__.py\", line 1028, in emit\n",
+            "    stream.write(msg + self.terminator)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/elastic/multiprocessing/api.py\", line 60, in _terminate_process_handler\n",
+            "    raise SignalException(f\"Process {os.getpid()} got signal: {sigval}\", sigval=sigval)\n",
+            "torch.distributed.elastic.multiprocessing.api.SignalException: Process 780 got signal: 2\n",
+            "Call stack:\n",
+            "    train(args, loader, generator, discriminator, g_optim, d_optim, g_ema, device)\n",
+            "  File \"train.py\", line 238, in train\n",
+            "    g_optim.step()\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/optim/optimizer.py\", line 88, in wrapper\n",
+            "  File \"/usr/lib/python3.7/runpy.py\", line 193, in _run_module_as_main\n",
+            "    \"__main__\", mod_spec)\n",
+            "  File \"/usr/lib/python3.7/runpy.py\", line 85, in _run_code\n",
+            "    exec(code, run_globals)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/launch.py\", line 193, in <module>\n",
+            "    main()\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/launch.py\", line 189, in main\n",
+            "    launch(args)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/launch.py\", line 174, in launch\n",
+            "    run(args)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/run.py\", line 713, in run\n",
+            "    )(*cmd_args)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/launcher/api.py\", line 131, in __call__\n",
+            "    return launch_agent(self._config, self._entrypoint, list(args))\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/launcher/api.py\", line 252, in launch_agent\n",
+            "    result = agent.run()\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/elastic/metrics/api.py\", line 125, in wrapper\n",
+            "    result = f(*args, **kwargs)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/elastic/agent/server/api.py\", line 715, in run\n",
+            "    log.warning(f\"Received {e.sigval} death signal, shutting down workers\")\n",
+            "Message: 'Received 2 death signal, shutting down workers'\n",
+            "Arguments: ()\n",
+            "WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 793 closing signal SIGINT\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/autograd/grad_mode.py\", line 28, in decorate_context\n",
+            "    return func(*args, **kwargs)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/optim/adam.py\", line 144, in step\n",
+            "    eps=group['eps'])\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/optim/_functional.py\", line 94, in adam\n",
+            "    denom = (exp_avg_sq.sqrt() / math.sqrt(bias_correction2)).add_(eps)\n",
+            "KeyboardInterrupt\n",
+            "Traceback (most recent call last):\n",
+            "  File \"/usr/lib/python3.7/runpy.py\", line 193, in _run_module_as_main\n",
+            "    \"__main__\", mod_spec)\n",
+            "  File \"/usr/lib/python3.7/runpy.py\", line 85, in _run_code\n",
+            "    exec(code, run_globals)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/launch.py\", line 193, in <module>\n",
+            "    main()\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/launch.py\", line 189, in main\n",
+            "    launch(args)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/launch.py\", line 174, in launch\n",
+            "    run(args)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/run.py\", line 713, in run\n",
+            "    )(*cmd_args)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/launcher/api.py\", line 131, in __call__\n",
+            "    return launch_agent(self._config, self._entrypoint, list(args))\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/launcher/api.py\", line 252, in launch_agent\n",
+            "    result = agent.run()\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/elastic/metrics/api.py\", line 125, in wrapper\n",
+            "    result = f(*args, **kwargs)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/elastic/agent/server/api.py\", line 709, in run\n",
+            "    result = self._invoke_run(role)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/elastic/agent/server/api.py\", line 843, in _invoke_run\n",
+            "    time.sleep(monitor_interval)\n",
+            "  File \"/usr/local/lib/python3.7/dist-packages/torch/distributed/elastic/multiprocessing/api.py\", line 60, in _terminate_process_handler\n",
+            "    raise SignalException(f\"Process {os.getpid()} got signal: {sigval}\", sigval=sigval)\n",
+            "torch.distributed.elastic.multiprocessing.api.SignalException: Process 780 got signal: 2\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
